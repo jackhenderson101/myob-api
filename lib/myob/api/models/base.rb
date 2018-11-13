@@ -118,6 +118,7 @@ module Myob
         end
         
         def perform_request(url)
+          Rails.logger.info("MYOB API REQUEST: #{url}")
           model_data = parse_response(@client.connection.get(url, {:headers => @client.headers}))
           @next_page_link = model_data['NextPageLink'] if self.model_route != ''
           model_data
